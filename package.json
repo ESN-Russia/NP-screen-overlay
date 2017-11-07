@@ -2,8 +2,23 @@
     "name": "python-contester",
     "version": "0.1.0",
     "main": "main.js",
+    "scripts": {
+        "postinstall": "install-app-deps",
+        "start": "npm install && electron .",
+        "pack": "build --dir",
+        "dist": "build"
+    },
     "dependencies": {
         "dotenv": "4.0.0",
         "electron-pug": "^1.5.1"
+    },
+    "devDependencies": {
+        "electron-builder": "latest",
+        "electron-packager": "latest"
+    },
+    "build": {
+        "win": {
+            "target": "NSIS"
+        }
     }
 }
