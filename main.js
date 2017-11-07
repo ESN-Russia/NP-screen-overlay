@@ -22,7 +22,7 @@ function createWindow () {
                               alwaysOnTop: !DEBUG, 
                               frame: false,
                               toolbar: false,
-                              skipTaskbar: !DEBUG,
+                              //skipTaskbar: !DEBUG,
                               kiosk: !DEBUG,
     })
 
