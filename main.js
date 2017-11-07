@@ -26,6 +26,8 @@ function createWindow () {
                               kiosk: !DEBUG,
     })
 
+    if (!DEBUG) win.setIgnoreMouseEvents(true);
+
     // and load the index.html of the app.
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'index.pug'),
