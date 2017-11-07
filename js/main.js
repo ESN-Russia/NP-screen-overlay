@@ -74,7 +74,4 @@ socket.on("update_mode", function(msg) {
         $(".presenter_cnt").addClass("_moved_away");
         $(".timer_cnt").addClass("_hidden");
     }
-
-    //$("._mode").addClass("_hidden");
-    //$("." + msg).removeClass("_hidden");
 });

@@ -133,10 +133,21 @@ div.presenter_cnt {
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: 0 5em;
+    padding-right: 3em;
+    padding-left: 2em;
     background-color: white;
     text-align: right;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); 
 }
+
+div.presenter_cnt::before {
+    content: url(../img/presenter-border-corner.png);
+    background-color: transparent!important;
+    position: absolute;
+    display: inline-block;
+    left: -18.7vw;
+/*    box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+*/} 
 
 div.presenter_cnt._moved_away {
     bottom: -30vh;
