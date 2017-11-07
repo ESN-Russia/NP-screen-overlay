@@ -11,17 +11,19 @@ const pug = require('electron-pug')({pretty: true}, locals);
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
+const DEBUG = (process.env.DEBUG === "True");
+
 function createWindow () {
     // Create the browser window.
     win = new BrowserWindow({
-                              width: 1366,
-                              height: 720,
+                              width: parseInt(process.env.WIDTH),
+                              height: parseInt(process.env.HEIGHT),
                               transparent: true,
-                              //alwaysOnTop: true, 
+                              alwaysOnTop: !DEBUG, 
                               frame: false,
                               toolbar: false,
-                              //skipTaskbar: true,
-                              //kiosk: true,
+                              skipTaskbar: !DEBUG,
+                              kiosk: !DEBUG,
     })
 
     win.main_host = process.env.MAIN_HOST
@@ -34,7 +36,9 @@ function createWindow () {
     }))
 
     // Open the DevTools.
-    win.webContents.openDevTools()
+    if (DEBUG) {
+        win.webContents.openDevTools();
+    }
 
     // Emitted when the window is closed.
     win.on('closed', () => {
