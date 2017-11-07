@@ -2,13 +2,33 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Hello World!</title>
+        <title>National Platform</title>
         <link rel="stylesheet" href="./css/main.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+                onload="window.$ = window.jQuery = module.exports;"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+        <script src="./js/main.js"></script>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        We are using node <script>document.write(process.versions.node)</script>,
-        Chrome <script>document.write(process.versions.chrome)</script>,
-        and Electron <script>document.write(process.versions.electron)</script>.
+        <div class="logo_cnt">
+<!--             <img src="./img/background_fall_17.jpg"> -->
+            <h1>National Platform</h1>
+            <h2>Autumn`17 Moscow</h2>
+            <h3>10 - 12 November</h3>
+        </div>
+
+        <div class="timer_cnt">
+            <div class="_mode_timer _mode _hidden">
+                <h1 id="t_min">00</h1>
+                <h1>:</h1>
+                <h1 id="t_sec">00</h1>
+                <h1>&nbsp-&nbsp</h1>
+                <h1 id="t_event_name">Event start</h1>
+            </div>
+            <div class="_mode_presenter _mode _hidden">
+                <h1 id="p_title"></h1>
+                <h1 id="p_name"></h1>
+            </div>
+        </div>
     </body>
 </html>

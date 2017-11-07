@@ -9,11 +9,14 @@ let win
 function createWindow () {
     // Create the browser window.
     win = new BrowserWindow({
-                              width: 800,
-                              height: 600,
+                              width: 1366,
+                              height: 720,
                               transparent: true,
+                              //alwaysOnTop: true, 
                               frame: false,
-                              toolbar: false
+                              toolbar: false,
+                              //skipTaskbar: true,
+                              //kiosk: true,
     })
 
     // and load the index.html of the app.
@@ -24,7 +27,7 @@ function createWindow () {
     }))
 
     // Open the DevTools.
-    //win.webContents.openDevTools()
+    win.webContents.openDevTools()
 
     // Emitted when the window is closed.
     win.on('closed', () => {
