@@ -4,8 +4,8 @@ html
         title National Platform
         link(rel='stylesheet', href='./css/main.css')
         script(type='text/javascript') SOCKET_HOST = "#{main_host}";
-        script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js',onload='window.$ = window.jQuery = module.exports;')
-        script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js')
+        script(src='./js/dep/jquery-3.2.1.min.js',onload='window.$ = window.jQuery = module.exports;')
+        script(src='./js/dep/socket.io.slim.js')
         script(src='./js/main.js')
     body
         #background_container
