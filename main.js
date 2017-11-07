@@ -1,6 +1,11 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const url = require('url')
+require('dotenv').config()
+const locals = {
+    main_host: process.env.MAIN_HOST,
+};
+const pug = require('electron-pug')({pretty: true}, locals);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -19,9 +24,11 @@ function createWindow () {
                               //kiosk: true,
     })
 
+    win.main_host = process.env.MAIN_HOST
+
     // and load the index.html of the app.
     win.loadURL(url.format({
-        pathname: path.join(__dirname, 'index.html'),
+        pathname: path.join(__dirname, 'index.pug'),
         protocol: 'file:',
         slashes: true
     }))

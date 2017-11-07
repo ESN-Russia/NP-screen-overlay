@@ -30,7 +30,7 @@ setInterval(tick_timer, 1000);
 
 // SOCKETS
 
-var socket = io("http://localhost:5000/");
+var socket = io(SOCKET_HOST);
 
 socket.on("set_timer", function(msg) {
     var _time = Math.round((new Date).getTime() / 1000);
