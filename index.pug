@@ -8,17 +8,18 @@ html
         script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js')
         script(src='./js/main.js')
     body
+        #background_container
         .logo_cnt
             h1 National Platform
             h2 Autumn&grave;17 Moscow
             h3 10 - 12 November
-        .timer_cnt
-            ._mode_timer._mode._hidden
+        .timer_cnt._hidden
+            ._mode_timer._mode
                 h1#t_min 00                            
                 h1 :             
                 h1#t_sec 00
                 h1 &nbsp;-&nbsp;             
                 h1#t_event_name Event start
-            ._mode_presenter._mode._hidden
-                h1#p_title
-                h1#p_name
+        .presenter_cnt._mode_presenter._mode._moved_away
+            h1#p_title
+            h1#p_name

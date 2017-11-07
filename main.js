@@ -26,8 +26,6 @@ function createWindow () {
                               kiosk: !DEBUG,
     })
 
-    win.main_host = process.env.MAIN_HOST
-
     // and load the index.html of the app.
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'index.pug'),
@@ -37,7 +35,7 @@ function createWindow () {
 
     // Open the DevTools.
     if (DEBUG) {
-        win.webContents.openDevTools();
+        win.webContents.openDevTools("detach");
     }
 
     // Emitted when the window is closed.

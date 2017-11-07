@@ -49,25 +49,32 @@ socket.on("set_presenter", function(msg) {
 
 socket.on("update_mode", function(msg) {
     if (msg == "_mode_timer") {
-        $(".logo_cnt").animate({
-            "height": "37vh",
-            "padding-top": "0"
-        }, 500, function() {});
+        $(".logo_cnt").removeClass("_moved_away");
+        $(".logo_cnt").addClass("_smalled");
+
+        $("#background_container").removeClass("_transparent");
+        $(".timer_cnt").removeClass("_hidden");
+
+        $(".presenter_cnt").addClass("_moved_away");
     }
     else if (msg == "_mode_presenter") {
-        $(".logo_cnt").animate({
-            "height": "27vh",
-            "padding-top": "0"
-        }, 500, function() {});
+        $(".presenter_cnt").removeClass("_moved_away");
 
+        $(".logo_cnt").addClass("_moved_away");
+        $(".logo_cnt").removeClass("_smalled");
+        $("#background_container").addClass("_transparent");
+        $(".timer_cnt").addClass("_hidden");
+        
     }
     else {
-        $(".logo_cnt").animate({
-            "height": "40vh",
-            "padding-top": "30vh"
-        }, 500, function() {});
+        $(".logo_cnt").removeClass("_moved_away");
+        $(".logo_cnt").removeClass("_smalled");
+        $("#background_container").removeClass("_transparent");
+
+        $(".presenter_cnt").addClass("_moved_away");
+        $(".timer_cnt").addClass("_hidden");
     }
 
-    $("._mode").addClass("_hidden");
-    $("." + msg).removeClass("_hidden");
+    //$("._mode").addClass("_hidden");
+    //$("." + msg).removeClass("_hidden");
 });

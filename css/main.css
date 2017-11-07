@@ -13,14 +13,40 @@
     src: url(../fonts/Kelson_Sans_Light.otf);
 }
 
+* {
+    -webkit-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    -ms-transition: all 0.7s ease-in-out;
+    -o-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
+}
+
+html,body {
+    background-color: rgba(0, 0, 0, 0);
+}
+
 body {
     margin: 0;
-    background-image: url(../img/background_empty_fall_17.png);
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
     font-family: Kelson Sans Bold;
     color: rgb(45, 49, 146);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#background_container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url(../img/background_empty_fall_17.png);
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+}
+
+#background_container._transparent {
+    opacity: 0;
 }
 
 div.logo_cnt {
@@ -28,6 +54,12 @@ div.logo_cnt {
     margin-left: 30%;
     padding-top: 20vh;
     text-align: center;
+    position: relative;
+    top: 0;
+}
+
+div.logo_cnt._moved_away {
+    top: -60vh;
 }
 
 div.logo_cnt > h1,h2,h3 {
@@ -38,8 +70,7 @@ div.logo_cnt > h1,h2,h3 {
 
 div.logo_cnt > h1 {
     font-size: 5.5em;
-/*    font-family: Kelson Sans Regular;
-*/}
+}
 
 div.logo_cnt > h2 {
     font-size: 3.8em;
@@ -49,15 +80,39 @@ div.logo_cnt > h3 {
     font-size: 3em;
 }
 
+
+/* SMalled */
+div.logo_cnt._smalled {
+    top: -15vh;
+}
+
+div.logo_cnt._smalled > h1 {
+    font-size: 4.8em;
+}
+
+div.logo_cnt._smalled > h2 {
+    font-size: 3em;
+}
+
+div.logo_cnt._smalled > h3 {
+    font-size: 2.2em;
+}
+/* --------*/
+
 div.timer_cnt {
+    opacity: 1;
+    position: relative;
+    top: -15vh;
+    left: 15vw;
     width: 100%;
     text-align: center;
     display: block;
+
+    font-family: Kelson Sans Bold;
 }
 
 div.timer_cnt > div {
-    background-color: white;
-    font-size: 24pt;
+    font-size: 3em;
 }
 
 div.timer_cnt > div > h1 {
@@ -74,10 +129,20 @@ div.timer_cnt > div._mode_timer {
     justify-content: center;
 }
 
-div.timer_cnt > div._mode_presenter {
-
+div.presenter_cnt {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0 5em;
+    background-color: white;
+    text-align: right;
 }
 
-._hidden {
-    display: none!important;
+div.presenter_cnt._moved_away {
+    bottom: -30vh;
+    right: -30vw;
+}
+
+div.timer_cnt._hidden {
+    opacity: 0;
 }
