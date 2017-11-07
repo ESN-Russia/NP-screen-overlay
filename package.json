@@ -11,6 +11,7 @@
     },
     "dependencies": {
         "dotenv": "4.0.0",
+        "electron-log": "^2.2.11",
         "electron-pug": "1.5.1",
         "path": "0.12.7",
         "url": "0.11.0"

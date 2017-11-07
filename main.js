@@ -1,32 +1,46 @@
+const config = {
+    WIDTH: parseInt(process.env.WIDTH) || 1024,
+    HEIGHT: parseInt(process.env.HEIGHT) || 720,
+    DEBUG: process.env.DEBUG,
+    MAIN_HOST: process.env.MAIN_HOST || "https://andresokol.herokuapp.com/",
+};
+
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const url = require('url')
 require('dotenv').config()
 const locals = {
-    main_host: process.env.MAIN_HOST,
+    main_host: config.MAIN_HOST,
 };
 const pug = require('electron-pug')({pretty: true}, locals);
+const log = require('electron-log');
+
+log.transports.file.level = 'silly';
+log.transports.console.level = 'silly';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
-const DEBUG = (process.env.DEBUG === "True");
-
 function createWindow () {
     // Create the browser window.
     win = new BrowserWindow({
-                              width: parseInt(process.env.WIDTH),
-                              height: parseInt(process.env.HEIGHT),
+                              width: parseInt(config.WIDTH),
+                              height: parseInt(config.HEIGHT),
                               transparent: true,
-                              alwaysOnTop: !DEBUG, 
+                              alwaysOnTop: !config.DEBUG, 
                               frame: false,
                               toolbar: false,
                               //skipTaskbar: !DEBUG,
-                              kiosk: !DEBUG,
+                              kiosk: !config.DEBUG,
     })
 
-    if (!DEBUG) win.setIgnoreMouseEvents(true);
+    log.info(config.WIDTH);
+    log.info(config.HEIGHT);
+    log.info(config.MAIN_HOST);
+    log.info(config.DEBUG)
+
+    if (!config.DEBUG) win.setIgnoreMouseEvents(true);
 
     // and load the index.html of the app.
     win.loadURL(url.format({
@@ -36,7 +50,7 @@ function createWindow () {
     }))
 
     // Open the DevTools.
-    if (DEBUG) {
+    if (config.DEBUG) {
         win.webContents.openDevTools("detach");
     }
 
