@@ -4,6 +4,11 @@
 }
 
 @font-face {
+    font-family: Kelson Sans Bold BG;
+    src: url(../fonts/Kelson_Sans_Bold_BG.otf);
+}
+
+@font-face {
     font-family: Kelson Sans Regular;
     src: url(../fonts/Kelson_Sans_Regular.otf);
 }
@@ -11,6 +16,11 @@
 @font-face {
     font-family: Kelson Sans Light;
     src: url(../fonts/Kelson_Sans_Light.otf);
+}
+
+@font-face {
+    font-family: Kelson Sans Light BG;
+    src: url(../fonts/Kelson_Sans_Light_BG.otf);
 }
 
 * {
@@ -27,7 +37,7 @@ html,body {
 
 body {
     margin: 0;
-    font-family: Kelson Sans Bold;
+    font-family: Kelson Sans Bold, Kelson Sans Bold BG;
     color: rgb(45, 49, 146);
     width: 100vw;
     height: 100vh;
@@ -108,8 +118,8 @@ div.timer_cnt {
     text-align: center;
     display: block;
 
-    font-family: Kelson Sans Bold;
-}
+/*    font-family: Kelson Sans Bold, Kelson Sans Bold BG;
+*/}
 
 div.timer_cnt > div {
     font-size: 3em;
