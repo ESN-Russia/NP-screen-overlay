@@ -24,13 +24,13 @@ function createWindow () {
                               width: parseInt(config.WIDTH),
                               height: parseInt(config.HEIGHT),
                               transparent: true,
-                              //alwaysOnTop: true, 
+                              alwaysOnTop: true, 
                               frame: false,
                               toolbar: false,
-                              //kiosk: true,
+                              kiosk: true,
     });
 
-    //win.setIgnoreMouseEvents(true);
+    win.setIgnoreMouseEvents(true);
 
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),
@@ -38,7 +38,7 @@ function createWindow () {
         slashes: true
     }));
 
-    win.webContents.openDevTools();
+    //win.webContents.openDevTools();
 
     win.on('closed', () => {
         win = null

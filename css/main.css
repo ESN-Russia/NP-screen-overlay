@@ -192,20 +192,39 @@ body {
     position: absolute;
     bottom: 0;
     right: 0;
-    padding-right: 3em;
-    padding-left: 2em;
-    background-color: white;
-    text-align: right;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+    padding-right: 1vw;
+    padding-left: 10vw;
+
+    background-color: transparent;
+    background-size: cover;
+    text-align: right;/*
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); */
+    background-image: url(../img/presenter-bg.png);
+    font-size: 2vh;
+    height: 15vh;
 }
 
-#presenter_cnt::before {
+#presenter_cnt > h1 {
+    font-family: Kelson Sans Bold, Kelson Sans Bold BG;
+    margin: 1vh 0;
+    letter-spacing: 0;
+}
+
+#presenter_cnt > h1#p_title {
+    margin-top: 3vh;
+}
+
+#presenter_cnt > h1#p_name {
+    font-family: Kelson Sans Light, Kelson Sans Light BG;
+}
+
+/*#presenter_cnt::before {
     content: url(../img/presenter-border-corner.png);
     background-color: transparent!important;
     position: absolute;
     display: inline-block;
     left: -18.7vw;
-} 
+} */
 
 #presenter_cnt._hidden {
     bottom: -30vh;
