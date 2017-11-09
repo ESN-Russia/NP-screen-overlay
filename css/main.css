@@ -24,11 +24,8 @@
 }
 
 * {
-    -webkit-transition: all 0.7s ease-in-out;
-    -moz-transition: all 0.7s ease-in-out;
-    -ms-transition: all 0.7s ease-in-out;
-    -o-transition: all 0.7s ease-in-out;
-    transition: all 0.7s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
 }
 
 html,body {
@@ -131,9 +128,16 @@ body {
 #timer_cnt {
     opacity: 1;
     position: relative;
+    top: 15vh;
     width: 100%;
     text-align: center;
-    display: block;
+}
+
+#timer_cnt> div > h1 {
+    margin: 0;
+    font-size: 6vw;
+    display: inline;
+    font-family: Kelson Sans Bold, Kelson Sans Bold BG;
 }
 
 /*#timer_cnt > div {
