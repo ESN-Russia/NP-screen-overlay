@@ -1,14 +1,14 @@
+require('dotenv').config()
 const config = {
     WIDTH: parseInt(process.env.WIDTH) || 1024,
     HEIGHT: parseInt(process.env.HEIGHT) || 720,
-    DEBUG: process.env.DEBUG,
+    DEBUG: process.env.DEBUG || false,
     MAIN_HOST: process.env.MAIN_HOST || "https://andresokol.herokuapp.com/",
 };
 
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const url = require('url')
-require('dotenv').config()
 const locals = {
     main_host: config.MAIN_HOST,
 };
@@ -28,19 +28,19 @@ function createWindow () {
                               width: parseInt(config.WIDTH),
                               height: parseInt(config.HEIGHT),
                               transparent: true,
-                              alwaysOnTop: !config.DEBUG, 
+                              alwaysOnTop: true, 
                               frame: false,
                               toolbar: false,
                               //skipTaskbar: !DEBUG,
-                              kiosk: !config.DEBUG,
+                              kiosk: true,
     })
 
     log.info(config.WIDTH);
     log.info(config.HEIGHT);
     log.info(config.MAIN_HOST);
-    log.info(config.DEBUG)
+    //log.info(config.DEBUG)
 
-    if (!config.DEBUG) win.setIgnoreMouseEvents(true);
+    //if (!config.DEBUG) win.setIgnoreMouseEvents(true);
 
     // and load the index.html of the app.
     win.loadURL(url.format({
@@ -50,9 +50,9 @@ function createWindow () {
     }))
 
     // Open the DevTools.
-    if (config.DEBUG) {
-        win.webContents.openDevTools("detach");
-    }
+    //if (config.DEBUG) {
+    //    win.webContents.openDevTools("detach");
+    //}
 
     // Emitted when the window is closed.
     win.on('closed', () => {
