@@ -1,6 +1,6 @@
 {
     "name": "ESN-Russia-NP-screen-overlay",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "author": "andresokol",
     "main": "main.js",
     "scripts": {
@@ -11,8 +11,7 @@
     },
     "dependencies": {
         "dotenv": "4.0.0",
-        "electron-log": "^2.2.11",
-        "electron-pug": "1.5.1",
+        "electron-log": "2.2.11",
         "path": "0.12.7",
         "url": "0.11.0"
     },
