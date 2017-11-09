@@ -1,7 +1,10 @@
+var SOCKET_HOST = require('electron').remote.getGlobal('SOCKET_HOST');
+
 var timer_time = (new Date).getTime() / 1000 + 20,
     is_timer_on = true;
 
 console.log(window.location);
+console.log(SOCKET_HOST);
 
 var tick_timer = function () {
     if (!is_timer_on) return;
@@ -52,6 +55,8 @@ socket.on("update_mode", function(msg) {
         $(".logo_cnt").removeClass("_moved_away");
         $(".logo_cnt").addClass("_smalled");
 
+        $("#tree_cnt").removeClass("_hidden");
+
         $("#background_container").removeClass("_transparent");
         $(".timer_cnt").removeClass("_hidden");
 
@@ -64,12 +69,14 @@ socket.on("update_mode", function(msg) {
         $(".logo_cnt").removeClass("_smalled");
         $("#background_container").addClass("_transparent");
         $(".timer_cnt").addClass("_hidden");
-        
+        $("#tree_cnt").addClass("_hidden");
     }
     else {
         $(".logo_cnt").removeClass("_moved_away");
         $(".logo_cnt").removeClass("_smalled");
         $("#background_container").removeClass("_transparent");
+
+        $("#tree_cnt").removeClass("_hidden");
 
         $(".presenter_cnt").addClass("_moved_away");
         $(".timer_cnt").addClass("_hidden");

@@ -167,3 +167,16 @@ div.presenter_cnt._moved_away {
 div.timer_cnt._hidden {
     opacity: 0;
 }
+
+#tree_cnt {
+    height: 100vh;
+    background-image: url(../img/esn_tree.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat no-repeat;
+    opacity: 1;
+}
+
+#tree_cnt._hidden {
+    opacity: 0;
+}
