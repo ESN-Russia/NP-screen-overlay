@@ -52,33 +52,26 @@ socket.on("set_presenter", function(msg) {
 
 socket.on("update_mode", function(msg) {
     if (msg == "_mode_timer") {
-        $(".logo_cnt").removeClass("_moved_away");
-        $(".logo_cnt").addClass("_smalled");
+        //$("#title_cnt").removeClass("_hidden");
+        $("#title_cnt").addClass("_smalled");
 
-        $("#tree_cnt").removeClass("_hidden");
+        //$("#tree_cnt").removeClass("_hidden");
 
-        $("#background_container").removeClass("_transparent");
-        $(".timer_cnt").removeClass("_hidden");
+        //$("#background_container").removeClass("_hidden");
+        $("#timer_cnt,#title_cnt,#background_container,#tree_cnt").removeClass("_hidden");
 
-        $(".presenter_cnt").addClass("_moved_away");
+        $("#presenter_cnt").addClass("_hidden");
     }
     else if (msg == "_mode_presenter") {
-        $(".presenter_cnt").removeClass("_moved_away");
-
-        $(".logo_cnt").addClass("_moved_away");
-        $(".logo_cnt").removeClass("_smalled");
-        $("#background_container").addClass("_transparent");
-        $(".timer_cnt").addClass("_hidden");
-        $("#tree_cnt").addClass("_hidden");
+        $("#presenter_cnt").removeClass("_hidden");
+        $("#title_cnt").removeClass("_smalled");
+        $("#timer_cnt,#tree_cnt,#background_container,#title_cnt,#logo_cnt").addClass("_hidden");
     }
     else {
-        $(".logo_cnt").removeClass("_moved_away");
-        $(".logo_cnt").removeClass("_smalled");
-        $("#background_container").removeClass("_transparent");
+        $("#title_cnt").removeClass("_smalled");
 
-        $("#tree_cnt").removeClass("_hidden");
+        $("#title_cnt,#tree_cnt,#logo_cnt,#background_container").removeClass("_hidden");
 
-        $(".presenter_cnt").addClass("_moved_away");
-        $(".timer_cnt").addClass("_hidden");
+        $("#timer_cnt,#presenter_cnt").addClass("_hidden");
     }
 });

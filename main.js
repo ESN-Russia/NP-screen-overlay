@@ -23,10 +23,10 @@ function createWindow () {
     win = new BrowserWindow({
                               width: parseInt(config.WIDTH),
                               height: parseInt(config.HEIGHT),
-                              //transparent: true,
+                              transparent: true,
                               //alwaysOnTop: true, 
-                              //frame: false,
-                              //toolbar: false,
+                              frame: false,
+                              toolbar: false,
                               //kiosk: true,
     });
 
