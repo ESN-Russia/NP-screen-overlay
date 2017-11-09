@@ -175,6 +175,13 @@ body {
     opacity: 0;
 }
 
+#logo_cnt._smalled {
+    bottom: 5vh;
+}
+
+#logo_cnt._smalled > img {
+    width: 60%;
+}
 
 
 #presenter_cnt {
@@ -194,8 +201,7 @@ body {
     position: absolute;
     display: inline-block;
     left: -18.7vw;
-/*    box-shadow: 0 0 10px rgba(0,0,0,0.5); 
-*/} 
+} 
 
 #presenter_cnt._hidden {
     bottom: -30vh;
