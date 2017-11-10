@@ -2,9 +2,13 @@ require('dotenv').config()
 const config = {
     WIDTH: parseInt(process.env.WIDTH) || 1024,
     HEIGHT: parseInt(process.env.HEIGHT) || 720,
-    DEBUG: process.env.DEBUG || false,
+    DEBUG: false,
     MAIN_HOST: process.env.MAIN_HOST || "https://andresokol.herokuapp.com/",
 };
+
+if (process.env.DEBUG !== undefined) {
+    config.DEBUG = true;
+}
 
 const electron = require('electron');
 const {app, BrowserWindow, dialog} = require('electron');
@@ -53,13 +57,13 @@ function createWindow () {
                               width: parseInt(config.WIDTH),
                               height: parseInt(config.HEIGHT),
                               transparent: true,
-                              //alwaysOnTop: true, 
+                              alwaysOnTop: !config.DEBUG, 
                               frame: false,
                               toolbar: false,
                               kiosk: true,
     });
 
-    //win.setIgnoreMouseEvents(true);
+    win.setIgnoreMouseEvents(!config.DEBUG);
 
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),
