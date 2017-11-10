@@ -61,6 +61,10 @@ socket.on("update_mode", function(msg) {
         $("#title_cnt,#logo_cnt").removeClass("_smalled");
         $("#timer_cnt,#tree_cnt,#background_container,#title_cnt,#logo_cnt").addClass("_hidden");
     }
+    else if (msg == "_mode_hide_all") {
+        $("#title_cnt,#logo_cnt").removeClass("_smalled");
+        $("#timer_cnt,#presenter_cnt,#title_cnt,#tree_cnt,#logo_cnt,#background_container").addClass("_hidden");
+    }
     else {
         $("#title_cnt,#logo_cnt").removeClass("_smalled");
         $("#title_cnt,#tree_cnt,#logo_cnt,#background_container").removeClass("_hidden");

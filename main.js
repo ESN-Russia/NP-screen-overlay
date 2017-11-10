@@ -21,6 +21,8 @@ let win;
 function createWindow () {
     global.SOCKET_HOST = config.MAIN_HOST;
 
+    log.info('SOCKET_HOST', global.SOCKET_HOST);
+
     let displays = electron.screen.getAllDisplays();
 
     message = 'Choose display to show overlay:';
@@ -51,13 +53,13 @@ function createWindow () {
                               width: parseInt(config.WIDTH),
                               height: parseInt(config.HEIGHT),
                               transparent: true,
-                              alwaysOnTop: true, 
+                              //alwaysOnTop: true, 
                               frame: false,
                               toolbar: false,
                               kiosk: true,
     });
 
-    win.setIgnoreMouseEvents(true);
+    //win.setIgnoreMouseEvents(true);
 
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),
