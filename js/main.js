@@ -57,24 +57,24 @@ socket.on("set_presenter", function(msg) {
 socket.on("update_mode", function(msg) {
     if (msg == "_mode_timer") {
         $("#top_cnt,#logo_cnt").addClass("_smalled");
-        $("#timer_cnt,#top_cnt,#background_container,#logo_cnt").removeClass(
+        $("#timer_cnt,#top_cnt,#background_container,#logo_cnt,#bridge_cnt").removeClass(
             "_hidden"
         );
         $("#presenter_cnt").addClass("_hidden");
     } else if (msg == "_mode_presenter") {
         $("#presenter_cnt").removeClass("_hidden");
         $("#top_cnt,#logo_cnt").removeClass("_smalled");
-        $("#timer_cnt,#background_container,#top_cnt,#logo_cnt").addClass(
+        $("#timer_cnt,#background_container,#top_cnt,#logo_cnt,#bridge_cnt").addClass(
             "_hidden"
         );
     } else if (msg == "_mode_hide_all") {
         $("#top_cnt,#logo_cnt").removeClass("_smalled");
         $(
-            "#timer_cnt,#presenter_cnt,#top_cnt,#logo_cnt,#background_container"
+            "#timer_cnt,#presenter_cnt,#top_cnt,#logo_cnt,#background_container,#bridge_cnt"
         ).addClass("_hidden");
     } else {
         $("#top_cnt,#logo_cnt").removeClass("_smalled");
-        $("#top_cnt,#logo_cnt,#background_container").removeClass("_hidden");
+        $("#top_cnt,#logo_cnt,#background_container,#bridge_cnt").removeClass("_hidden");
         $("#timer_cnt,#presenter_cnt").addClass("_hidden");
     }
 });
