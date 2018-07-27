@@ -4,7 +4,7 @@ const config = {
     WIDTH: parseInt(process.env.WIDTH) || 1024,
     HEIGHT: parseInt(process.env.HEIGHT) || 720,
     DEBUG: false,
-    MAIN_HOST: process.env.MAIN_HOST || "https://andresokol.herokuapp.com/"
+    MAIN_HOST: process.env.MAIN_HOST || "http://np.esnrussia.org/"
 };
 
 if (process.env.DEBUG !== undefined) {

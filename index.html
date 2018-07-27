@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="./css/main.css"/>
         <script src="./js/dep/jquery-3.2.1.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
         <script src="./js/dep/socket.io.slim.js"></script>
+        <script src="./js/dep/moment.js"></script>
         <script src="./js/main.js"></script>
     </head>
     <body class="pure-g">
@@ -23,11 +24,9 @@
             </div>
             <div id="timer_cnt" class="_hidden">
                 <div>
-                    <h1 id="t_min">00</h1>
-                    <h1>:</h1>
-                    <h1 id="t_sec">00</h1>
-                    <h1>&nbsp;-&nbsp;</h1>
-                    <h1 id="t_event_name">Event start</h1>
+                    <h1 id="t_event_name">Coffee break ends</h1>
+                    <h1>&nbsp;</h1>
+                    <h1 id="t_timer">right now</h1>
                 </div>
             </div>
             <div id="logo_cnt">

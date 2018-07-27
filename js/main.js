@@ -1,6 +1,6 @@
 const SOCKET_HOST = require("electron").remote.getGlobal("SOCKET_HOST");
 
-let timer_time = new Date().getTime() / 1000 + 20,
+let timer_time = moment(),
     is_timer_on = true;
 
 console.log(window.location);
@@ -9,42 +9,26 @@ console.log(SOCKET_HOST);
 const tick_timer = function() {
     if (!is_timer_on) return;
 
-    let _secs_left = Math.round(timer_time - new Date().getTime() / 1000);
-    //console.log(_secs_left);
-    if (String(_secs_left % 60).length == 1) {
-        document.getElementById("t_sec").innerHTML =
-            "0" + String(_secs_left % 60);
-    } else {
-        document.getElementById("t_sec").innerHTML = _secs_left % 60;
-    }
+    const _secs_left = -moment().diff(timer_time, 'seconds');
 
-    let _mins_left = Math.round(_secs_left / 60);
-    //console.log(_mins_left);
-    if (String(_mins_left % 60).length == 1) {
-        document.getElementById("t_min").innerHTML =
-            "0" + String(_mins_left % 60);
+    if (_secs_left <= 0) {
+        document.getElementById("t_timer").innerHTML = "right now";
+        is_timer_on = false;
     } else {
-        document.getElementById("t_min").innerHTML = _mins_left % 60;
+        document.getElementById("t_timer").innerHTML = moment().to(timer_time);
     }
-
-    if (_secs_left <= 0) is_timer_on = false;
 };
 
-setInterval(tick_timer, 1000);
+setInterval(tick_timer, 500);
 
 // SOCKETS
 
 const socket = io(SOCKET_HOST);
 
 socket.on("set_timer", function(msg) {
-    let _time = Math.round(new Date().getTime() / 1000);
-    _time_day_start = _time - _time % (60 * 60 * 24) - 3 * 3600;
-    timer_time =
-        _time_day_start +
-        parseInt(msg.t_hour) * 60 * 60 +
-        parseInt(msg.t_min) * 60;
+    console.log(msg);
+    timer_time = moment(msg.t_hour + ":" + msg.t_min + ":" + msg.t_sec, "HH:mm:ss");
     $("#t_event_name").text(msg.event_name);
-    tick_timer();
     is_timer_on = true;
 });
 
