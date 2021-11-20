@@ -4,22 +4,15 @@
     "author": "andresokol",
     "main": "main.js",
     "scripts": {
-        "postinstall": "install-app-deps",
-        "start": "npm install && electron .",
+        "start": "electron .",
         "pack": "build --dir",
         "dist": "build"
     },
     "dependencies": {
-        "dotenv": "^4.0.0",
-        "electron-log": "^2.2.11",
-        "path": "^0.12.7",
-        "url": "^0.11.0"
+        "dotenv": "^10.0.0"
     },
     "devDependencies": {
-        "babel-eslint": "^8.2.2",
-        "electron-builder": "latest",
-        "electron-packager": "latest",
-        "eslint": "^4.18.2"
+        "electron": "^16.0.1"
     },
     "build": {
         "win": {

@@ -3,8 +3,8 @@ require("dotenv").config();
 const config = {
     WIDTH: parseInt(process.env.WIDTH) || 1024,
     HEIGHT: parseInt(process.env.HEIGHT) || 720,
-    DEBUG: false,
-    MAIN_HOST: process.env.MAIN_HOST || "http://np.esnrussia.org/"
+    DEBUG: true,
+    MAIN_HOST: process.env.MAIN_HOST || "http://andresokol.herokuapp.com/"
 };
 
 if (process.env.DEBUG !== undefined) {
@@ -12,51 +12,33 @@ if (process.env.DEBUG !== undefined) {
 }
 
 const electron = require("electron");
-const { app, BrowserWindow, dialog } = require("electron");
+const {app, BrowserWindow, dialog} = require("electron");
 const path = require("path");
 const url = require("url");
 
-const log = require("electron-log");
-
-log.transports.file.level = "silly";
-log.transports.console.level = "silly";
-
 let win;
 
-function createWindow() {
+async function createWindow() {
     global.SOCKET_HOST = config.MAIN_HOST;
 
-    log.info("SOCKET_HOST", global.SOCKET_HOST);
+    const displays = electron.screen.getAllDisplays();
 
-    let displays = electron.screen.getAllDisplays();
-
-    message = "Choose display to show overlay:";
-    options = [];
+    const message = "Choose display to show overlay:";
+    const options = [];
 
     for (let i = 0; i < displays.length; i += 1) {
-        options.push(
-            "Display " +
-                i +
-                ". x=" +
-                displays[i].bounds.x +
-                "; y=" +
-                displays[i].bounds.y
-        );
+        options.push(`Display ${i}. x=${displays[i].bounds.x} y=${displays[i].bounds.y}`);
     }
 
-    log.info(message);
-    log.info(options);
-
-    let displayIndex = dialog.showMessageBox({
+    let messageBoxResponse = await dialog.showMessageBox({
         type: "info",
-        message: "Found " + displays.length + " displays.",
-        buttons: options
+        message: `Found ${displays.length} displays:`,
+        title: message,
+        buttons: options,
     });
+    console.log(messageBoxResponse.response);
 
-    log.info("Chosen display:");
-    log.info(displays[displayIndex]);
-
-    let launch_display = displays[displayIndex].bounds;
+    let launch_display = displays[messageBoxResponse.response].bounds;
 
     win = new BrowserWindow({
         x: launch_display.x,

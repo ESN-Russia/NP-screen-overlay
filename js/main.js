@@ -1,57 +1,61 @@
-const SOCKET_HOST = require("electron").remote.getGlobal("SOCKET_HOST");
+// const SOCKET_HOST = require("electron").remote.getGlobal("SOCKET_HOST");
+const SOCKET_HOST = "ws://andresokol.herokuapp.com/wss"
 
-let timer_time = moment(),
-    is_timer_on = true;
+let isTimerOn = true,
+    serverState = {};
 
 console.log(window.location);
 console.log(SOCKET_HOST);
 
-const tick_timer = function() {
-    if (!is_timer_on) return;
+const tickTimer = function () {
+    if (!isTimerOn) return;
 
-    const _secs_left = -moment().diff(timer_time, 'seconds');
+    const currentSec = Math.floor(Date.now() / 1000);
+    const timerSec = Number.parseInt(serverState.timerTs / 1000);
 
-    if (_secs_left <= 0) {
+    const timeDeltaSec = timerSec - currentSec;
+    // console.log("ye cur", currentSec);
+    // console.log("ye time", timerSec);
+
+    if (timeDeltaSec <= 0) {
         document.getElementById("t_timer").innerHTML = "right now";
-        is_timer_on = false;
+        isTimerOn = false;
     } else {
-        document.getElementById("t_timer").innerHTML = moment().to(timer_time);
+
+
+        document.getElementById("t_timer").innerHTML =
+            `in ${Math.floor(timeDeltaSec / 60)}:${timeDeltaSec % 60}`;
     }
 };
 
-setInterval(tick_timer, 500);
+setInterval(tickTimer, 500);
 
 // SOCKETS
 
-const socket = io(SOCKET_HOST);
+const updateTimer = () => {
+    $("#t_event_name").text(serverState.timerTitle);
+    isTimerOn = true;
+};
 
-socket.on("set_timer", function(msg) {
-    console.log(msg);
-    timer_time = moment(msg.t_hour + ":" + msg.t_min + ":" + msg.t_sec, "HH:mm:ss");
-    $("#t_event_name").text(msg.event_name);
-    is_timer_on = true;
-});
+const updatePresenter = () => {
+    $("#p_name").text(serverState.presenterName);
+    $("#p_title").text(serverState.presenterTitle);
+};
 
-socket.on("set_presenter", function(msg) {
-    console.log(msg);
-    $("#p_name").text(msg.p_name);
-    $("#p_title").text(msg.p_title);
-});
-
-socket.on("update_mode", function(msg) {
-    if (msg == "_mode_timer") {
+const updateMode = () => {
+    if (serverState.activeMode === "timer") {
         $("#top_cnt,#logo_cnt").addClass("_smalled");
         $("#timer_cnt,#top_cnt,#background_container,#logo_cnt,#bridge_cnt").removeClass(
             "_hidden"
         );
         $("#presenter_cnt").addClass("_hidden");
-    } else if (msg == "_mode_presenter") {
+    } else if (serverState.activeMode === "presenter") {
         $("#presenter_cnt").removeClass("_hidden");
         $("#top_cnt,#logo_cnt").removeClass("_smalled");
         $("#timer_cnt,#background_container,#top_cnt,#logo_cnt,#bridge_cnt").addClass(
             "_hidden"
         );
-    } else if (msg == "_mode_hide_all") {
+    } else if (serverState.activeMode === "transparent") {
         $("#top_cnt,#logo_cnt").removeClass("_smalled");
         $(
             "#timer_cnt,#presenter_cnt,#top_cnt,#logo_cnt,#background_container,#bridge_cnt"
@@ -61,4 +65,14 @@ socket.on("update_mode", function(msg) {
         $("#top_cnt,#logo_cnt,#background_container,#bridge_cnt").removeClass("_hidden");
         $("#timer_cnt,#presenter_cnt").addClass("_hidden");
     }
-});
+};
+
+const socket = new WebSocket(SOCKET_HOST);
+socket.onmessage = (event) => {
+    serverState = JSON.parse(event.data);
+    console.log("New state:", serverState);
+
+    updateMode();
+    updatePresenter();
+    updateTimer();
+};
