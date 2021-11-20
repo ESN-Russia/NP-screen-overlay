@@ -3,7 +3,7 @@ require("dotenv").config();
 const config = {
     WIDTH: parseInt(process.env.WIDTH) || 1024,
     HEIGHT: parseInt(process.env.HEIGHT) || 720,
-    DEBUG: true,
+    DEBUG: process.env.DEBUG === "true",
     MAIN_HOST: process.env.MAIN_HOST || "http://andresokol.herokuapp.com/"
 };
 
@@ -62,7 +62,7 @@ async function createWindow() {
         })
     );
 
-    win.webContents.openDevTools();
+    if (config.DEBUG) win.webContents.openDevTools();
 
     win.on("closed", () => {
         win = null;
